@@ -1,10 +1,16 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+import { BaseCommandInteraction } from "discord.js";
+import { ICommand } from "../icommand";
 
-module.exports = {
-    data: new SlashCommandBuilder()
-          .setName('server')
-          .setDescription('Replies with server info'),
-    async execute(interaction) {
-		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
-    },
-};
+export const Server: ICommand = {
+    name: "server",
+    description: "Replies with server info",
+    type: "CHAT_INPUT",
+    execute: async (interaction: BaseCommandInteraction) => {
+        if (!interaction.guild) {
+            await interaction.reply("Guild information not found!")
+        }
+        else {
+            await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
+        }
+    }
+}
