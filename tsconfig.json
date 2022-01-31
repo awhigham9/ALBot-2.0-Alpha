@@ -21,12 +21,12 @@
         "baseUrl": "./"
     },
     "files": [
-        "src/index.js",
-        "src/deploy-commands.js"
+        "src/index.ts",
+        "src/deploy-commands.ts"
     ],
     "include": [
         "./**/*.ts"
-, "src/index.js", "src/deploy-commands.js"    ],
+    ],
     "exclude": [
         "node_modules",
         "dist"
