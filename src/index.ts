@@ -2,14 +2,10 @@
 import fs from "fs";
 import path from "path";
 import { Client, Intents, Collection } from "discord.js";
-import commands from "./commands";
 const { token } = require('../config.json');
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-
-// Import commands into client
-client.commands = commands;
 
 // Import events into client
 const eventFiles = fs.readdirSync(path.join(__dirname, './events'))
