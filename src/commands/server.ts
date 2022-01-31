@@ -4,7 +4,6 @@ import { ICommand } from "../icommand";
 export const Server: ICommand = {
     name: "server",
     description: "Replies with server info",
-    type: "CHAT_INPUT",
     execute: async (interaction: BaseCommandInteraction) => {
         if (!interaction.guild) {
             await interaction.reply("Guild information not found!")
