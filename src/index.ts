@@ -1,9 +1,9 @@
 // Require the necessary discord.js classes
 import fs from "fs";
 import path from "path";
-const { Client, Intents, Collection } = require('discord.js');
-const { token } = require('../config.json');
+import { Client, Intents, Collection } from "discord.js";
 import commands from "./commands";
+const { token } = require('../config.json');
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
