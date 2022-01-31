@@ -10,7 +10,6 @@ const commandFiles = fs.readdirSync(path.join(__dirname, commandDir))
 for (const file of commandFiles) {
 	const command: ICommand = require(`./commands/${file}`).default;
 	commands.push(command);
-    console.log(JSON.stringify(command)); // remove this TODO
 }
 
 export default commands; // array of commands
