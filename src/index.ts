@@ -1,28 +1,26 @@
 // Require the necessary discord.js classes
-const fs = require('fs');
+import fs from "fs";
+import path from "path";
 const { Client, Intents, Collection } = require('discord.js');
-const { token } = require('./config.json');
+const { token } = require('../config.json');
+import commands from "./commands";
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 // Import commands into client
-client.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.data.name, command);
-}
+client.commands = commands;
 
 // Import events into client
-const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync(path.join(__dirname, './events'))
+					.filter((file: string) => file.endsWith('.ts'));
 for (const file of eventFiles) {
-	const event = require(`./events/${file}`);
+	const event = require(`./events/${file}`).default;
 	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args));
+		client.once(event.name, (...args : any[]) => event.execute(...args));
 	}
 	else {
-		client.on(event.name, (...args) => event.execute(...args));
+		client.on(event.name, (...args: any[]) => event.execute(...args));
 	}
 }
 
