@@ -9,3 +9,5 @@ export const User: ICommand = {
 		    await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
     }
 }
+
+export default User;

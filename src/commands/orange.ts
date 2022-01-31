@@ -9,3 +9,5 @@ export const Orange: ICommand = {
         await interaction.reply('Blue!');
     }
 }
+
+export default Orange;

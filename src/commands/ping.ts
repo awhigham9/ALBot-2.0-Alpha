@@ -9,3 +9,5 @@ export const Ping: ICommand = {
         await interaction.reply('Pong!');
     }
 }
+
+export default Ping;

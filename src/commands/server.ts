@@ -14,3 +14,5 @@ export const Server: ICommand = {
         }
     }
 }
+
+export default Server;
