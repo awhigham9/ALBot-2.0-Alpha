@@ -3,9 +3,15 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { clientId, guildId, token } = require('../config.json');
 import commands from "./commands";
+import { ICommand } from "./icommand";
 
 const rest = new REST({ version: '9' }).setToken(token);
 
-rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
+const commandList: ICommand[] = [];
+for (const commandName in commands) {
+	commandList.push(commands[commandName]);
+}
+
+rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commandList })
 	.then(() => console.log('Successfully registered application commands.'))
 	.catch(console.error);
